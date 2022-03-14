@@ -1,15 +1,18 @@
-import React from 'react'
-import Section from './Components/Sections/Section'
-// import Video from './Components/Video'
+import React, { useEffect } from 'react'
+import Section from './Components/sections/Section'
 import data from './data/data.json'
 
 const App = () => {
-const list = data.scrolldata
-    return (
-    <div>
-    {/* <Video /> */}
-    <Section list={list}/>
-    </div>
+
+  useEffect(()=>{
+    document.title = "Brahmware-app"
+  },[])
+
+  const list = data.scrolldata
+  return (
+    <>
+      <Section list={list} />
+    </>
   )
 }
 

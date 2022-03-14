@@ -1,31 +1,30 @@
+
 import React from 'react'
 
 import './SingleSection.css'
 
 
-const SingleSection = ({item}) => {
-  const {id,title,subtitle,video,items} = item
-  const playVideo = (e) => {
-    // e.target.play()
-    console.log(e.target);
-    console.log("On");
+const SingleSection = ({ item, setPath, PauseVideoRef, setPlay, PlayVideoRef }) => {
+  const { title, subtitle, items } = item
+  function VideoHandle(path, e) {
+    e.stopPropagation();
+    setPath(path);
+    PlayVideoRef();
+    setPlay(true)
+
   }
-  const pauseVideo = (e) => {
-    // e.target.stop()
-    console.log(e.target);
-    console.log("Off");
-  }
+
   return (
-    <div className='section-container' onMouseOver={playVideo} onMouseOut={pauseVideo}>
+    <div className='section-container' onMouseEnter={(e) => VideoHandle(item.video, e)} onMouseLeave={() => { PauseVideoRef() }} >
+
       <h1>{title}</h1>
       <p>{subtitle}</p>
-      <video autoPlay muted loop onMouseOver={playVideo}>
-        <source src={video} type="video/mp4"/>
-      </video>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus consequuntur voluptate quae dolorem rem perferendis. Quisquam porro quis, quos accusantium, enim eum odit laudantium tempora temporibus ab, incidunt dignissimos illo?</p>
       <div className='sub-items'>
-      {
-        items.map((e,i)=> <div className='sub-item' key={i}>{e}</div>)
-      }
+        {
+          items.map((e, i) => <div className='sub-item' key={i}>{e}</div>)
+        }
+        
       </div>
     </div>
   )
